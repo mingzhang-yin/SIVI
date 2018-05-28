@@ -143,7 +143,7 @@ sess.run(init_op)
 
 record = []
 for i in range(5000):
-    _,cost=sess.run([train_op1,loss],{x:X_train,y:y_train,lr:0.01*(0.7**(i/100)),J:100,merge:1,scale:1.0})
+    _,cost=sess.run([train_op1,loss],{x:X_train,y:y_train,lr:0.01*(0.9**(i/100)),J:100,merge:1,scale:1.0})
 
     if i<2000:  
         _,cost=sess.run([train_op2,loss],{x:X_train,y:y_train,lr2:0.001*(0.9**(i/100)),J:100,merge:1,scale:1.0})
