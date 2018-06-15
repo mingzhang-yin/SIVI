@@ -59,8 +59,6 @@ target = data_p[data_number]
 
     
 #%%
-tf.reset_default_graph(); #%reset -f
-
 noise_dim = 10
 K = 40 
 sigma = tf.constant(0.1) 
