@@ -78,7 +78,6 @@ theta_mcmc=np.transpose(matdata['BetaMCMC'])
 
 
 #%%
-tf.reset_default_graph();# %reset -f
 
 N,P = np.shape(X_train)   
 noise_dim = 20
