@@ -65,7 +65,6 @@ data_number = "3"
 target = data_p[data_number] 
    
 #%%
-tf.reset_default_graph(); 
 noise_dim = 10
 K = 20 
 
