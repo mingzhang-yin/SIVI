@@ -76,7 +76,6 @@ def sample_mu(noise_dim,K,reuse=False):
 
     
 #%%
-tf.reset_default_graph();# %reset -f
 
 N = 150
 noise_dim = 10
