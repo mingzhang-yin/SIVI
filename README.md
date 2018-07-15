@@ -8,7 +8,8 @@ Written (W) 2017-2018 Mingzhang Yin
 
 Below are the paper to cite if you find the algorithms in this repository useful in your own research:
 
-* @article{yin2018semi,
+* @article{
+yin2018semi,
 title={Semi-Implicit Variational Inference}, 
 author={Yin, Mingzhang and Zhou, Mingyuan}, 
 journal={arXiv preprint arXiv:1805.11183}, 
