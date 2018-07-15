@@ -8,7 +8,7 @@ Written (W) 2017-2018 Mingzhang Yin
 
 Below are the paper to cite if you find the algorithms in this repository useful in your own research:
 
-* M. Yin and M. Zhou, "[Semi-Implicit Variational Inference](http://proceedings.mlr.press/v80/yin18b/yin18b.pdf)," 2018
+* M. Yin and M. Zhou, "[Semi-Implicit Variational Inference](http://proceedings.mlr.press/v80/yin18b/yin18b.pdf)", arXiv:1805.11183, 2018
 
 
 # License Info
