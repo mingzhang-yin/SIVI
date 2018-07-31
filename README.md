@@ -13,8 +13,7 @@ yin2018semi,
 title={Semi-Implicit Variational Inference}, 
 author={Yin, Mingzhang and Zhou, Mingyuan}, 
 journal={arXiv preprint arXiv:1805.11183}, 
-year={2018}  
-}
+year={2018}  }
 
 
 # License Info
