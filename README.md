@@ -1,6 +1,6 @@
 # Semi-Implicit Variational Inference (SIVI)
 
-Code to reproduce the results in [Semi-Implicit Variational Inference](http://arxiv.org/abs/1805.11183). Use neural network to capture latent variable dependencies.
+Code to reproduce the results in [Semi-Implicit Variational Inference](http://arxiv.org/abs/1805.11183). 
 
 # Citations
 
