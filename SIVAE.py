@@ -27,7 +27,7 @@ sys.path.append(os.getcwd())
 
 #%%
 
-def sample_psi(x,noise_dim,K,z_dim,tt,reuse=False): 
+def sample_psi(x,noise_dim,K,z_dim,reuse=False): 
     with tf.variable_scope("hyper_psi") as scope:
         if reuse:
             scope.reuse_variables()
@@ -35,17 +35,17 @@ def sample_psi(x,noise_dim,K,z_dim,tt,reuse=False):
         x_1 = tf.tile(x_0,[1,K,1])   #N*K*784
         
         B3 = Bernoulli(0.5)
-        e3 = tf.cast(B3.sample([tf.shape(x)[0],K,noise_dim[0]]),tf.float32)*tt
+        e3 = tf.cast(B3.sample([tf.shape(x)[0],K,noise_dim[0]]),tf.float32)
         input_ = tf.concat([e3,x_1],axis=2)
         h3 = slim.stack(input_,slim.fully_connected,[500,500,noise_dim[0]])
         
         B2 = Bernoulli(0.5)
-        e2 = tf.cast(B2.sample([tf.shape(x)[0],K,noise_dim[1]]),tf.float32)*tt
+        e2 = tf.cast(B2.sample([tf.shape(x)[0],K,noise_dim[1]]),tf.float32)
         input_1 = tf.concat([h3,e2,x_1],axis=2)
         h2 = slim.stack(input_1,slim.fully_connected,[500,500,noise_dim[1]])
         
         B1 = Bernoulli(0.5)
-        e1 = tf.cast(B1.sample([tf.shape(x)[0],K,noise_dim[2]]),tf.float32)*tt
+        e1 = tf.cast(B1.sample([tf.shape(x)[0],K,noise_dim[2]]),tf.float32)
         h1 = slim.stack(tf.concat([h2,e1,x_1],axis=2),slim.fully_connected,[500,500,500])
 
         mu = tf.reshape(slim.fully_connected(h1,z_dim,activation_fn=None,scope='implicit_hyper_mu'),[-1,K,z_dim])
@@ -81,7 +81,6 @@ noise_dim = [150,100,50]
 x_dim = 784
 eps = 1e-10
 
-tt = tf.placeholder(tf.float32, shape=()) #control add noise or 0
 WU = tf.placeholder(tf.float32, shape=()) #warm-up
 
 x = tf.placeholder(tf.float32,[None,x_dim])
@@ -95,7 +94,7 @@ sigma_iw1 = tf.exp(z_logv_iw/2)
 sigma_iw2 = tf.cond(merge>0,lambda:tf.tile(tf.expand_dims(sigma_iw1,axis=2),[1,1,J+1,1]),
                     lambda:tf.tile(tf.expand_dims(sigma_iw1,axis=2),[1,1,J,1]))
 
-psi_iw = sample_psi(x,noise_dim,K,z_dim,tt)
+psi_iw = sample_psi(x,noise_dim,K,z_dim)
 z_sample_iw = sample_n(psi_iw,sigma_iw1)
 
 z_sample_iw1 = tf.expand_dims(z_sample_iw,axis=2)
@@ -103,7 +102,7 @@ z_sample_iw2 = tf.cond(merge>0,lambda:tf.tile(z_sample_iw1,[1,1,J+1,1]),
                        lambda:tf.tile(z_sample_iw1,[1,1,J,1]))
 
 
-psi_iw_star = sample_psi(x,noise_dim,J,z_dim,tt,reuse=True)
+psi_iw_star = sample_psi(x,noise_dim,J,z_dim,reuse=True)
 psi_iw_star0 = tf.expand_dims(psi_iw_star,axis=1)
 psi_iw_star1 = tf.tile(psi_iw_star0,[1,K,1,1])
 psi_iw_star2 = tf.cond(merge>0,lambda:tf.concat([psi_iw_star1, tf.expand_dims(psi_iw,axis=2)],2),
@@ -176,21 +175,21 @@ for epoch in range(training_epochs):
     for i in range(total_batch):
         train_xs_0,_ = train_data.next_batch(batch_size)  
         train_xs = np.random.binomial(1,train_xs_0)
-        _ = sess.run([train_op],{x:train_xs,lr:np_lr,merge:1,J:J_value,K:1,tt:1.0,WU:warm_up})
+        _ = sess.run([train_op],{x:train_xs,lr:np_lr,merge:1,J:J_value,K:1,WU:warm_up})
 
 
     if epoch>1900:
         for k in range(total_batch):
             train_xs_0,_ = train_data.next_batch(batch_size)  
             train_xs = np.random.binomial(1,train_xs_0)
-            cost=sess.run(loss_iw,{x:train_xs,J:J_value,merge:1,K:1,tt:1.0,WU:1.0})
+            cost=sess.run(loss_iw,{x:train_xs,J:J_value,merge:1,K:1,WU:1.0})
             avg_cost += cost / total_batch
     
         
         for j in range(total_test_batch):
             test_xs_0,_ = test_data.next_batch(batch_size)  
             test_xs = np.random.binomial(1,test_xs_0)   
-            cost_test=sess.run(loss_iw,{x:test_xs,J:J_value,merge:1,K:1,tt:1.0,WU:1.0})
+            cost_test=sess.run(loss_iw,{x:test_xs,J:J_value,merge:1,K:1,WU:1.0})
             avg_cost_test += cost_test / total_test_batch
             
         
@@ -208,7 +207,7 @@ avg_evi_test = 0
 for j in range(total_test_batch):
     test_xs_0,_ = test_data.next_batch(batch_size)  
     test_xs = np.random.binomial(1,test_xs_0)   
-    evi_test=sess.run(loss_iw,{x:test_xs,J:J_value,merge:1,K:1000,tt:1.0,WU:1.0})
+    evi_test=sess.run(loss_iw,{x:test_xs,J:J_value,merge:1,K:1000,WU:1.0})
     avg_evi_test += evi_test / total_test_batch
 
 L_1000 = avg_evi_test
