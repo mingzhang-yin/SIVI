@@ -1,6 +1,6 @@
 # Semi-Implicit Variational Inference (SIVI)
 
-Code to reproduce the results in [Semi-Implicit Variational Inference](http://arxiv.org/abs/1805.11183). 
+Code to reproduce the results in [Semi-Implicit Variational Inference](http://proceedings.mlr.press/v80/yin18b/yin18b.pdf). 
 
 # Data sets
 The data for SIVI_1d.py, SIVI_2d.py, SIVI_NB.py are self-generated in the python script.  <br />
