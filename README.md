@@ -12,11 +12,15 @@ Or of course, just try semi-implicit VI with your own datasets and probabilistic
 
 Below are the paper to cite if you find the algorithms in this repository useful in your own research:
 ```
-@inproceedings{Yin2018SemiImplicitVI,
-  title={Semi-Implicit Variational Inference},
-  author={Mingzhang Yin and Mingyuan Zhou},
-  booktitle={ICML},
-  year={2018}
+@InProceedings{pmlr-v80-yin18b,
+  title = 	 {Semi-Implicit Variational Inference},
+  author = 	 {Yin, Mingzhang and Zhou, Mingyuan},
+  booktitle = {Proceedings of the 35th International Conference on Machine Learning},
+  pages = 	 {5660--5669},
+  year = 	 {2018},
+  volume = 	 {80},
+  series = 	 {Proceedings of Machine Learning Research},
+  publisher = 	 {PMLR},
 }
 ```
 
