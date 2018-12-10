@@ -105,7 +105,7 @@ init_op=tf.global_variables_initializer()
 
 
 #%%
-#if merge==1, starts from small side; if merge==0, starts from upper side
+# merge==1 corresponds to lower bound; merge==0 corresponds to upper bound
 sess=tf.InteractiveSession()
 sess.run(init_op)
 record = []
@@ -129,7 +129,7 @@ for r in xx:
     elif target=='laplace':
         pdf = 1/4*np.exp(-0.5*np.abs(r)) #laplace
     elif target=='gmm':
-        pdf = 0.3*stats.norm.pdf(r, loc=-2, scale=1)+0.7*stats.norm.pdf(r, loc=2, scale=1)
+        pdf = 0.3*stats.norm.pdf(r, loc=-2, scale=1)+0.7*stats.norm.pdf(r, loc=2, scale=1) #gmm
     yy.append(pdf)
 
 
