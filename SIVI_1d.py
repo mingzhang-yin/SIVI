@@ -83,7 +83,8 @@ psi_star = tf.cond(merge>0,lambda:tf.concat([psi_star,tf.transpose(psi_sample)],
 
 log_H= tf.log(tf.reduce_mean(tf.exp(-0.5*tf.square(z_sample-psi_star)/tf.square(sigma)),axis=1,keep_dims=True))
 
-log_Q = -tf.log(sigma)-0.5*tf.square(z_sample-psi_sample)/tf.square(sigma)
+#log_Q = -tf.log(sigma)-0.5*tf.square(z_sample-psi_sample)/tf.square(sigma)
+#regular = log_Q - log_H
 
 if target == 'gaussian':
     log_P = -tf.log(3.0)-0.5*tf.square(z_sample)/tf.square(3.0) #gaussian
@@ -94,7 +95,6 @@ elif target == 'gmm':
 else:
     raise ValueError('No pre-defined target distribution, you can write your own log(PDF) ')
     
-regular = log_Q - log_H
 loss = tf.reduce_mean(log_H - log_P)
 
 nn_var =  slim.get_model_variables()
