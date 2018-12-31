@@ -18,9 +18,7 @@ Below are the paper to cite if you find the algorithms in this repository useful
   booktitle = {Proceedings of the 35th International Conference on Machine Learning},
   pages = 	 {5660--5669},
   year = 	 {2018},
-  volume = 	 {80},
-  series = 	 {Proceedings of Machine Learning Research},
-  publisher = 	 {PMLR},
+  publisher = 	 {PMLR}
 }
 ```
 
