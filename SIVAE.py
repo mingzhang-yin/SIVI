@@ -111,7 +111,7 @@ psi_iw_star2 = tf.cond(merge>0,lambda:tf.concat([psi_iw_star1, tf.expand_dims(ps
 
 
 ker = tf.exp(-0.5*tf.reduce_sum(tf.square(z_sample_iw2-psi_iw_star2)/tf.square(sigma_iw2+eps),3))
-log_H_iw = tf.log(tf.reduce_mean(ker,axis=2))-0.5*tf.reduce_sum(z_logv_iw,2)
+log_H_iw = tf.log(tf.reduce_mean(ker,axis=2))-0.5*tf.reduce_sum(z_logv_iw,2) #change to tf.reduce_logsumexp if there is NA
 
 log_prior_iw = -0.5*tf.reduce_sum(tf.square(z_sample_iw),2)
 
