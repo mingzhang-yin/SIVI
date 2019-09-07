@@ -12,13 +12,12 @@ Or of course, just try SIVI with your own datasets and probabilistic models.<br 
 
 Below are the paper to cite if you find the algorithms in this repository useful in your own research:
 ```
-@inproceedings{pmlr-v80-yin18b,
-  title = 	 {Semi-Implicit Variational Inference},
-  author = 	 {Yin, Mingzhang and Zhou, Mingyuan},
-  booktitle = {Proceedings of the 35th International Conference on Machine Learning},
-  pages = 	 {5660--5669},
-  year = 	 {2018},
-  publisher = 	 {PMLR}
+@inproceedings{yin2018semi,
+  title={Semi-Implicit Variational Inference},
+  author={Yin, Mingzhang and Zhou, Mingyuan},
+  booktitle={International Conference on Machine Learning},
+  pages={5646--5655},
+  year={2018}
 }
 ```
 
