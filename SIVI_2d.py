@@ -49,12 +49,12 @@ def sample_hyper(noise_dim,K,reuse=False):
         if reuse:
             scope.reuse_variables()
         e2 = tf.random_normal(shape=[K,noise_dim])
-        h2 = slim.stack(e2,slim.fully_connected,[40,60,40])
+        h2 = slim.stack(e2,slim.fully_connected,[40,60,40], activation_fn=tf.nn.tanh)
         mu = tf.reshape(slim.fully_connected(h2,z_dim,activation_fn=None,scope='implicit_hyper_mu'),[-1,2])
     return mu
 #%%
-data_p = {"5":"normal2d","6":"gmm2d","7":"banana","8":"Xshape"}
-data_number = "8"
+data_p = {"5":"normal2d","6":"gmm2d","7":"banana","8":"Xshape","9":"sin"}
+data_number = "9"
 target = data_p[data_number]   
 
     
@@ -101,6 +101,11 @@ elif target == "Xshape":
     z1 = tf.slice(z_sample, [0,0],[-1,1])
     z2 = tf.slice(z_sample, [0,1],[-1,1])
     log_P = tf.log(0.5*tf.exp(bi_gs(z1,z2,2.0,1.8))+0.5*tf.exp(bi_gs(z1,z2,2.0,-1.8)))
+elif target == 'sin':             # sin shape, set sigma=0.1 or less
+    z1 = tf.slice(z_sample, [0,0],[-1,1])
+    z2 = tf.slice(z_sample, [0,1],[-1,1])
+    w1 = tf.sin(z1)
+    log_P = -0.5 * tf.square((z2-w1)/0.4)
 else:
     raise ValueError('No pre-defined target distribution, you can write your own log(PDF) ')
 
