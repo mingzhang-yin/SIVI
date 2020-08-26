@@ -101,7 +101,7 @@ elif target == "Xshape":
     z1 = tf.slice(z_sample, [0,0],[-1,1])
     z2 = tf.slice(z_sample, [0,1],[-1,1])
     log_P = tf.log(0.5*tf.exp(bi_gs(z1,z2,2.0,1.8))+0.5*tf.exp(bi_gs(z1,z2,2.0,-1.8)))
-elif target == 'sin':             # sin shape, set sigma=0.1 or less
+elif target == 'sin':           
     z1 = tf.slice(z_sample, [0,0],[-1,1])
     z2 = tf.slice(z_sample, [0,1],[-1,1])
     w1 = tf.sin(z1)
