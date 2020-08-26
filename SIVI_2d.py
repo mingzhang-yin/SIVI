@@ -132,14 +132,14 @@ for i in range(5000):
 
 #%%
 
-r_hive=np.array([])
+r_sivi=np.array([])
 for i in range(200):
     if i==0:
         r = sess.run(z_sample)
-        r_hive=r
+        r_sivi=r
     else:
         r = sess.run(z_sample)
-        r_hive = np.concatenate((r_hive, r), axis=0)
+        r_sivi = np.concatenate((r_sivi, r), axis=0)
         
 
 X,Y = np.mgrid[-2:2:.01, -2:2:.01]
@@ -173,7 +173,7 @@ elif target == 'Xshape':
     CS = plt.contour(X, Y, Z,5,colors='b')
 
 
-sns.kdeplot(r_hive[:,0],r_hive[:,1],cmap="Reds",n_levels=5,label='Q distribution')
+sns.kdeplot(r_sivi[:,0],r_sivi[:,1],cmap="Reds",n_levels=5,label='Q distribution')
 import matplotlib.patches as mpatches
 red_patch = mpatches.Patch(color='red', label='Q distribution')
 blue_patch = mpatches.Patch(color='blue', label='P distribution')
