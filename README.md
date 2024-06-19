@@ -8,7 +8,7 @@ Code to reproduce the results in [Semi-Implicit Variational Inference](http://pr
 The data for SIVI_1d.py, SIVI_2d.py, SIVI_NB.py are self-generated in the python script.  <br />
 The "waveform" data for SIVI_LR.py is in the data folder. <br />
 The MNIST data for SIVAE.py is  self-contained. <br />
-Or of course, just try SIVI with your own datasets and probabilistic models.<br />
+Or of course, please try SIVI with your own datasets and probabilistic models.<br />
 
 # Citations
 
